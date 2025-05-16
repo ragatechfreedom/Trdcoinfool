@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TRD Coin Mining Pool</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+  <div class="container mx-auto px-4 py-6">
+    <h1 class="text-3xl font-bold mb-6 text-center">💸 TRD Coin Mining Pool</h1>
+
+    <!-- Stats Panel -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+      <div class="bg-gray-800 rounded-2xl shadow p-4">
+        <h2 class="text-xl font-semibold">Total Hashrate</h2>
+        <p class="text-2xl mt-2" id="hashrate">43.5 MH/s</p>
+      </div>
+      <div class="bg-gray-800 rounded-2xl shadow p-4">
+        <h2 class="text-xl font-semibold">Workers Online</h2>
+        <p class="text-2xl mt-2" id="workers">5</p>
+      </div>
+      <div class="bg-gray-800 rounded-2xl shadow p-4">
+        <h2 class="text-xl font-semibold">Last Block</h2>
+        <p class="text-2xl mt-2" id="block">#004231</p>
+      </div>
+    </div>
+
+    <!-- Chart -->
+    <div class="bg-gray-800 rounded-2xl shadow p-6 mb-8">
+      <h2 class="text-xl font-semibold mb-4">Hashrate History</h2>
+      <canvas id="hashrateChart" height="100"></canvas>
+    </div>
+
+    <!-- Wallet Section -->
+    <div class="bg-gray-800 rounded-2xl shadow p-6">
+      <h2 class="text-xl font-semibold mb-4">Wallet Summary</h2>
+      <p><strong>Address:</strong> 4AN5QBdcuRtdCbET...XnV9mz</p>
+      <p><strong>Balance:</strong> 0.0124 TRD</p>
+      <p><strong>Total Paid:</strong> 2.3011 TRD</p>
+    </div>
+  </div>
+
+  <script>
+    const ctx = document.getElementById('hashrateChart').getContext('2d');
+    const chart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00'],
+        datasets: [{
+          label: 'MH/s',
+          data: [20, 32, 28, 35, 43, 41],
+          borderColor: 'rgba(255, 255, 255, 0.8)',
+          backgroundColor: 'rgba(255, 255, 255, 0.2)',
+          tension: 0.3
+        }]
+      },
+      options: {
+        plugins: {
+          legend: {
+            labels: { color: 'white' }
+          }
+        },
+        scales: {
+          x: { ticks: { color: 'white' } },
+          y: { ticks: { color: 'white' } }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
